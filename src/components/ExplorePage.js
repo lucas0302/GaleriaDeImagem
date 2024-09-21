@@ -32,7 +32,7 @@ export default function ExplorePage() {
       <Wrapper>
         <Images>
           {imagens.map((img) => (
-            <Link to={`/imagem/${img.id}`} key={img.id}>
+            <Link to={`/imagem/${img.id}`} key={img.id}>   {/* to={`/imagem/${img.id}`} serve para apontar para qual rota deve ir para cada card */}
               <Image>
                 <img src={img.url} />
                 <div>

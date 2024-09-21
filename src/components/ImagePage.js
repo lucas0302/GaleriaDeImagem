@@ -6,11 +6,11 @@ import styled from "styled-components"
 export default function ImagePage() {
   const [image, setimage] = useState(undefined)
   const [error, setError] = useState(undefined)
-  const { idImagem } = useParams()
+  const { idImagem } = useParams() // serve para pegar o parametro que esta na url dependendo do que vc configuro la na rota arquivo -> app.js
 
   useEffect(() => {
 
-    axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/shuttercamp/images/${idImagem}`)
+    axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/shuttercamp/images/${idImagem}`)// coloco o ${idImagem} para poder chamar o id que eu quero (id relativo de cada card...)
       .then(
         (res) => {
           setimage(res.data)
