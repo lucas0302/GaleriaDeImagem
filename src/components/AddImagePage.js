@@ -1,25 +1,68 @@
+import axios from "axios"
 import styled from "styled-components"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function AddImagePage() {
+  const [name, setName] = useState("")
+  const [description, setDescription] = useState("")
+  const [url, setUrl] = useState("")
+  const navigate = useNavigate()
+
+  function addImage(e) {
+    e.preventDefault()// Tira o comportamento default do form de att a pagina
+    axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/shuttercamp/images", {// No post tem 2 parametro o primeiro e a url da api e o segundo e os dados que vc vai madar para a api
+      name: name,
+      description: description,
+      url: url
+    })
+      .then(res => navigate("/"))
+      .catch((err) =>{
+         alert(err.response.data.mensagem)
+         console.log(err.response.data)
+
+      })
+  }
+
   return (
     <div>
       <Wrapper>
-        <InputGroup>
-          <Title>Nome</Title>
-          <input type="text" />
-        </InputGroup>
+        <form onSubmit={addImage}>
+          <InputGroup>
+            <Title htmlFor="name">Nome</Title>
+            <input
+              id="name"
+              type="text"
+              required
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </InputGroup>
 
-        <InputGroup>
-          <Title>Descrição</Title>
-          <input type="text" />
-        </InputGroup>
+          <InputGroup>
+            <Title htmlFor="description">Descrição</Title>
+            <input
+              id="description"
+              type="text"
+              required
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+            />
+          </InputGroup>
 
-        <InputGroup>
-          <Title>URL da Imagem</Title>
-          <input type="text" />
-        </InputGroup>
+          <InputGroup>
+            <Title htmlFor="url">URL da Imagem</Title>
+            <input
+              id="url"
+              type="text"
+              required
+              value={url}
+              onChange={e => setUrl(e.target.value)}
+            />
+          </InputGroup>
 
-        <SaveButton disabled={true}>Adicionar Imagem</SaveButton>
+          <SaveButton type="submit">Adicionar Imagem</SaveButton>
+        </form>
       </Wrapper>
     </div>
   )
@@ -58,7 +101,7 @@ const InputGroup = styled.div`
     border-radius: 5px;
   }
 `
-const Title = styled.div`
+const Title = styled.label`
   margin-bottom: 5px;
   font-size: 22px;
 `

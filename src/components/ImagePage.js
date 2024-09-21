@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import styled from "styled-components"
+import styled from "styled-components";
 
 export default function ImagePage() {
   const [image, setimage] = useState(undefined)
@@ -57,6 +57,10 @@ const Image = styled.div`
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 2px 2px 5px -1px rgba(0, 0, 0, .2);
+  a{
+    width: 100%;
+    max-width: 380px;
+  }
 `
 const Info = styled.div`
   padding: 0 20px;
