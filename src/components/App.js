@@ -12,7 +12,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<ExplorePage />}/>
-        <Route path="/imagem/5" element={ <ImagePage />}/>
+        <Route path="/imagem/:idImagem" element={ <ImagePage />}/>
         <Route path="/adicionar-imagens" element={<AddImagePage />}/>
       </Routes>
 

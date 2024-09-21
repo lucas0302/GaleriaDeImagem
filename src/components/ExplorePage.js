@@ -2,6 +2,7 @@ import styled from "styled-components";
 import axios from "axios";
 import GifAnimacoa from "../assets/circle-9360_256.gif";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ExplorePage() {
   const [imagens, setImagens] = useState([]);
@@ -18,12 +19,12 @@ export default function ExplorePage() {
     })
 
     promise.catch((err) => { // erros que pode acontecer
-      console.log(err.response.data) 
+      console.log(err.response.data)
     })
   }, [])
 
   if (imagens.length === 0) {
-    return <div>Carregando<Gif src={GifAnimacoa}/></div>
+    return <div>Carregando<Gif src={GifAnimacoa} /></div>
   }
 
   return (
@@ -31,12 +32,14 @@ export default function ExplorePage() {
       <Wrapper>
         <Images>
           {imagens.map((img) => (
-            <Image key={img.id}>
-              <img src={img.url} />
-              <div>
-                <div>{img.name}</div>
-              </div>
-            </Image>
+            <Link to={`/imagem/${img.id}`} key={img.id}>
+              <Image>
+                <img src={img.url} />
+                <div>
+                  <div>{img.name}</div>
+                </div>
+              </Image>
+            </Link>
           ))}
         </Images>
       </Wrapper>
